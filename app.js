@@ -1,46 +1,33 @@
+// Declare the toggle variable before calling changeBackground
+let toggle = true; // Variable to toggle between two colors
+
 // Select The Button Object
-let button = document.querySelector("button")
-changeBackground()
+let button = document.querySelector("#button");
+console.log(button);
+changeBackground();
 
 // Add the event listener method to it, on click would call a function that changes background
-button.addEventListener("click", changeBackground)
+button.addEventListener("click", changeBackground);
 
 function changeBackground() {
-    // Generate colors
-    let r = color()
-    let g = color()
-    let b = color()
+    console.log("Button clicked");
+    // Define two colors
+    let color1 = { r: 27, g: 174, b: 44 }; // Green
+    let color2 = { r: 200, g: 0, b: 0 }; // Red
+
+    // Choose color based on toggle
+    let color = toggle ? color1 : color2;
+    toggle = !toggle; // Toggle the value
 
     // Change background color
-    document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`
+    document.body.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
 
     // Change page's text color white or black
-    document.body.style.color = textColor(r, g, b)
-    document.body.style.color = textColor(r, g, b)
-    button.style.color = textColor(r, g, b)
-
-    // Display RGB and HEX values of color
-    let rgb = `rgb(${r}, ${g}, ${b})`;
-    let hex = rgbToHex(r, g, b);
-    document.getElementById("rgbValue").innerText = `RGB: ${rgb}`
-    document.getElementById("hexValue").innerText = `Hex: ${hex}`
-}
-
-function color() {
-    return Math.floor(Math.random() * 256)
+    document.body.style.color = textColor(color.r, color.g, color.b);
+    button.style.color = textColor(color.r, color.g, color.b);
 }
 
 function textColor(r, g, b) {
     // luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
-    return 0.2126 * r + 0.7152 * g + 0.0722 * b > 128 ? 'black' : 'white'
-}
-
-// RBG and Hex functions (for displaying color code)
-function componentToHex(c) {
-    var hex = c.toString(16);
-    return hex.length == 1 ? "0" + hex : hex;
-}
-
-function rgbToHex(r, g, b) {
-    return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b > 128 ? 'black' : 'white';
 }

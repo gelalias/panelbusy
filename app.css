@@ -38,7 +38,7 @@ button {
     border-radius: 7px;
     cursor: pointer;
     background-color: transparent;
-    transition: all 0.75s;
+    transition: all 1.75s;
 }
 
 .color-display {
